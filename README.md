@@ -40,10 +40,6 @@ Recorrido de consulta con contexto, diagnóstico y plan, documentos y revisión 
 
 ## Arquitectura del MVP en AWS
 
-![Arquitectura final del MVP VIK Salud en AWS](docs/images/arquitectura-final.png)
-
-*Diagrama final del proyecto original en AWS. La demo de este repositorio funciona localmente en el navegador, sin desplegar estos servicios.*
-
 El proyecto original utiliza servicios administrados y funciones serverless, junto con una base de datos relacional para los registros clínicos.
 
 | Capa | Servicios y función |
