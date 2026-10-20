@@ -1,0 +1,12 @@
+{
+  "name": "vik-salud-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo estática de portafolio VIK Salud, con datos ficticios y sin AWS",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node --test tests/demo.test.cjs",
+    "check": "node --check shared/demo.js && node --check shared/qr.js && node --check doctor/app.js && node --check paciente/app-qr-v16.js"
+  }
+}
