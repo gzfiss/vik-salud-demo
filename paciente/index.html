@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <script src="../shared/demo.js?v=pdf-ready-2"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>VIK Salud · Mi salud</title>
+  <!-- VIK paciente · SafeMed v26 · 5 archivos -->
+
+  <link rel="stylesheet" href="../shared/vik-theme.css">
+  <link rel="stylesheet" href="styles.css?v=28-rendimiento">
+
+  <script src="../shared/vik-theme.js" defer></script>
+<script src="api.js?v=28-rendimiento" defer></script>
+<script src="citas-avisos.js?v=27-citas" defer></script>
+<script src="funcionalidades.js?v=28-rendimiento" defer></script>
+
+  <!-- Librería para generar códigos QR reales -->
+  <script id="vikQrLibrary" src="../shared/qr.js" defer></script>
+  <script src="app-qr-v16.js?v=28-rendimiento" defer></script>
+  <link rel="stylesheet" href="../shared/demo.css">
+</head>
+
+<body>
+
+<a class="skip" href="#main">Ir al contenido</a>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <span class="brand-mark">V</span>
+
+      <div>
+        <strong>VIK Salud</strong>
+        <small>Portal del paciente</small>
+      </div>
+    </div>
+
+    <p class="workspace-label">MI ESPACIO DE SALUD</p>
+
+    <nav id="navigation" aria-label="Navegación principal"></nav>
+
+    <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-expanded="true">
+      <span aria-hidden="true">‹</span>
+      <span>Ocultar menú</span>
+    </button>
+
+    <div class="sidebar-context">
+      <span>Mi red de atención</span>
+      <strong>Una ficha VIK</strong>
+      <small>CESFAM · Clínica · Hospital</small>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="avatar" data-patient-avatar>—</span>
+
+      <div>
+        <strong data-patient-name>Paciente</strong>
+        <small>Una identidad. Una ficha.</small>
+      </div>
+    </div>
+
+  </aside>
+
+  <main id="main" tabindex="-1">
+
+    <header class="topbar">
+
+      <div>
+        <p class="eyebrow">VIK · Portal del paciente</p>
+
+        <h1 id="pageTitle" tabindex="-1">
+          Mi salud, en un lugar
+        </h1>
+
+        <p id="pageSubtitle" class="muted">
+          Tu información y tu cuidado, conectados.
+        </p>
+      </div>
+
+      <div class="top-actions">
+
+        <button
+          class="notification-button"
+          type="button"
+          id="notificationButton"
+          aria-label="Notificaciones"
+          aria-expanded="false">
+          <span class="notification-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+              <path d="M10 21h4"></path>
+            </svg>
+          </span>
+          <b id="notificationCount" hidden>0</b>
+        </button>
+
+        <button
+          class="theme-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Cambiar tema"
+          title="Cambiar tema">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span><span class="theme-main">Tema</span><br><span class="theme-sub">Lavanda</span></span>
+        </button>
+
+        <button
+          class="profile"
+          data-view="ficha"
+          aria-label="Ver mi ficha">
+
+          <span
+            class="avatar"
+            data-patient-avatar>
+            —
+          </span>
+
+          <span data-patient-name>
+            Paciente
+          </span>
+
+        </button>
+
+      </div>
+
+    </header>
+
+    <div
+      id="loadStatus"
+      class="demo-banner"
+      role="status">
+      Cargando tu ficha clínica…
+    </div>
+
+    <div
+      id="loadError"
+      role="alert"
+      hidden>
+    </div>
+
+    <section
+      id="view-inicio"
+      class="view"
+      aria-label="Inicio">
+    </section>
+
+    <section
+      id="view-seguimiento"
+      class="view"
+      aria-label="Seguimiento"
+      hidden>
+    </section>
+
+    <section
+      id="view-ficha"
+      class="view"
+      aria-label="Mi ficha"
+      hidden>
+    </section>
+
+    <section
+      id="view-documentos"
+      class="view"
+      aria-label="Documentos"
+      hidden>
+
+      <div class="document-intro">
+        <span class="archive-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3H6v18h12V7zM14 3v5h4M9 12h6M9 16h6"/></svg></span>
+
+        <div>
+          <p class="eyebrow">Tu archivo de salud</p>
+
+          <h2>Cada documento, en su lugar</h2>
+
+          <p class="muted">
+            Encuentra tus recetas y resultados,
+            junto a la atención que les dio origen.
+            <br>Todo tu historial médico, siempre disponible y seguro.
+          </p>
+        </div>
+
+        <span
+          class="document-emblem"
+          aria-hidden="true">
+          <svg viewBox="0 0 210 130" fill="none"><ellipse cx="110" cy="113" rx="85" ry="10" fill="#e9dff8"/><rect x="39" y="37" width="120" height="76" rx="12" fill="#d8c8ef"/><path d="M39 54V40a9 9 0 0 1 9-9h37l13 14h51" fill="#c9b3e7"/><rect x="83" y="15" width="77" height="91" rx="8" fill="#fff" stroke="#bda5df"/><path d="M98 40h45M98 51h45M98 62h32M98 83h19" stroke="#c6b1e3" stroke-width="4" stroke-linecap="round"/><circle cx="162" cy="92" r="23" fill="#bca2df"/><path d="M162 80v24M150 92h24" stroke="white" stroke-width="5" stroke-linecap="round"/></svg>
+        </span>
+
+      </div>
+
+      <div
+        id="documentCategories"
+        class="document-categories">
+      </div>
+
+      <form
+        id="documentFilters"
+        class="filters panel"
+        role="search">
+        <div class="document-filter-heading"><h2>Buscar y filtrar documentos</h2><p id="documentCount" role="status" aria-live="polite"></p></div>
+
+        <label class="grow">
+          Buscar documento
+
+          <input
+            id="docSearch"
+            type="search"
+            placeholder="Nombre o establecimiento">
+        </label>
+
+        <label>
+          Tipo
+
+          <select id="docType">
+            <option value="all">Todos los tipos</option>
+            <option>Examen</option>
+            <option>Receta</option>
+            <option>Informe</option>
+            <option>Imagen</option>
+            <option>Otro</option>
+          </select>
+        </label>
+
+        <label>
+          Establecimiento
+
+          <select id="docPlace">
+            <option value="all">Todos</option>
+          </select>
+        </label>
+
+        <label>
+          Desde
+          <input id="docFrom" type="date">
+        </label>
+
+        <label>
+          Hasta
+          <input id="docTo" type="date">
+        </label>
+
+        <button
+          type="reset"
+          class="secondary">
+          Limpiar
+        </button>
+
+      </form>
+
+      <div class="document-table-heading" aria-hidden="true"><span>Documento</span><span>Tipo</span><span>Establecimiento</span><span>Fecha</span><span>Acciones</span></div>
+      <div
+        id="documentList"
+        class="panel">
+      </div>
+
+    </section>
+
+    <section
+      id="view-citas"
+      class="view"
+      aria-label="Mis citas"
+      hidden>
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">Tu próxima visita</p>
+          <h2>Organiza tu cuidado</h2>
+        </div>
+
+        <button
+          class="secondary"
+          id="todayButton">
+          Hoy
+        </button>
+
+      </div>
+
+      <section class="patient-calendar panel">
+
+        <summary>
+          Consultar calendario mensual
+        </summary>
+
+        <div class="calendar-layout">
+
+          <article class="panel">
+
+            <div class="calendar-toolbar">
+
+              <button
+                class="icon-button"
+                id="prevMonth"
+                aria-label="Mes anterior">
+                ‹
+              </button>
+
+              <h2 id="calendarTitle"></h2>
+
+              <button
+                class="icon-button"
+                id="nextMonth"
+                aria-label="Mes siguiente">
+                ›
+              </button>
+
+            </div>
+
+            <div
+              class="weekdays"
+              aria-hidden="true">
+
+              <span>Lun</span>
+              <span>Mar</span>
+              <span>Mié</span>
+              <span>Jue</span>
+              <span>Vie</span>
+              <span>Sáb</span>
+              <span>Dom</span>
+
+            </div>
+
+            <div
+              id="calendar"
+              class="calendar">
+            </div>
+
+            <p class="caption">
+              🩺 Medicina general · ❤️ Cardiología · 🔬 Laboratorio
+            </p>
+
+          </article>
+
+          <aside class="panel">
+
+            <p class="eyebrow">
+              Día seleccionado
+            </p>
+
+            <h2 id="selectedDay"></h2>
+
+            <div id="dayAppointments"></div>
+
+          </aside>
+
+        </div>
+
+      </section>
+
+      <div class="section-heading">
+
+        <h2>Mis citas</h2>
+
+        <div
+          class="segmented"
+          aria-label="Filtrar citas">
+
+          <button
+            data-period="upcoming"
+            aria-pressed="true">
+            Próximas
+          </button>
+
+          <button
+            data-period="past"
+            aria-pressed="false">
+            Anteriores
+          </button>
+
+        </div>
+
+      </div>
+
+      <div
+        id="appointmentList"
+        class="grid two">
+      </div>
+
+      <p class="caption">
+        Puedes activar un aviso emergente 30 minutos antes de la cita.
+        Se guarda en este navegador y solo aparece mientras el portal esté abierto; no envía correos, SMS ni notificaciones con la página cerrada.
+      </p>
+
+    </section>
+
+    <section
+      id="view-accesos"
+      class="view"
+      aria-label="Accesos"
+      hidden>
+    </section>
+
+    <section
+      id="view-qr"
+      class="view"
+      aria-label="QR de emergencia"
+      hidden>
+    </section>
+
+    <section
+      id="view-safemed"
+      class="view"
+      aria-label="SafeMed"
+      hidden>
+    </section>
+
+    <footer>
+      VIK Salud
+      <span>Tu historia de salud te acompaña.</span>
+    </footer>
+
+  </main>
+
+</div>
+
+<dialog
+  id="modal"
+  aria-labelledby="modalTitle">
+
+  <div class="dialog-heading">
+
+    <h2 id="modalTitle"></h2>
+
+    <button
+      class="icon-button"
+      id="closeModal"
+      aria-label="Cerrar ventana">
+      ×
+    </button>
+
+  </div>
+
+  <div id="modalContent"></div>
+
+</dialog>
+
+<div
+  id="toast"
+  role="status"
+  aria-live="polite"
+  hidden>
+</div>
+
+<noscript>
+  Activa JavaScript para usar el portal del paciente.
+</noscript>
+
+</body>
+</html>

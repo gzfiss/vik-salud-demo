@@ -1,0 +1,30 @@
+VIK SALUD - DEMO PARA GITHUB
+
+1. Descomprime VIK_SALUD_Demo_GitHub.zip.
+2. En GitHub crea un repositorio (por ejemplo vik-salud-demo).
+3. Sube EL CONTENIDO de la carpeta vik-demo.
+   index.html debe quedar en la raiz del repositorio.
+   No subas solo el ZIP ni dejes otra carpeta vik-demo encima.
+4. En el repositorio entra en Settings > Pages.
+5. Source: Deploy from a branch.
+6. Branch: main. Folder: /(root). Guarda.
+7. Cuando termine, GitHub mostrara el enlace de la demo.
+
+Si usas Git desde tu computador, agrega tambien .nojekyll y .gitignore.
+El workflow .github/workflows/pages.yml es una alternativa manual opcional;
+no hace falta para publicar desde la rama.
+
+Para probarla antes en tu computador:
+- Con Node.js 20 o superior: npm start
+- O con Python 3: python -m http.server 8000 --bind 127.0.0.1
+Abre http://localhost:8000/.
+
+En la portada puedes entrar con un clic. En el formulario:
+Doctora: 22.222.222-2 / demo123
+Paciente: 11.111.111-1 / demo123
+
+SafeMed esta simulado. Todos los datos son ficticios.
+Los cambios se guardan en este navegador. No usa AWS.
+El QR no sincroniza estado entre dispositivos.
+
+El README contiene el recorrido y las limitaciones de la demo.

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="360" viewBox="0 0 1440 360" role="img" aria-label="VIK Salud, continuidad del cuidado. AWS re/Start Hackathon">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#effafa"/><stop offset="1" stop-color="#f1eafa"/></linearGradient></defs>
+<rect width="1440" height="360" rx="24" fill="url(#bg)"/>
+<circle cx="1330" cy="80" r="220" fill="#ded1f2" opacity=".48"/><circle cx="1390" cy="330" r="180" fill="#bfdfdf" opacity=".5"/>
+<rect x="72" y="72" width="92" height="92" rx="24" fill="#326e78"/><text x="118" y="135" font-family="Arial,sans-serif" font-size="60" font-weight="700" text-anchor="middle" fill="white">V</text>
+<text x="190" y="137" font-family="Arial,sans-serif" font-size="64" font-weight="700" fill="#211c3b">VIK Salud</text>
+<text x="74" y="217" font-family="Arial,sans-serif" font-size="30" fill="#326e78">Tu información y tu cuidado, conectados.</text>
+<text x="74" y="279" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#7352a5">AWS re/Start Hackathon</text>
+<text x="74" y="313" font-family="Arial,sans-serif" font-size="18" fill="#655e75">Portales clínicos · Continuidad del cuidado · SafeMed</text>
+</svg>
